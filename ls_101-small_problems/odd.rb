@@ -39,23 +39,33 @@
 
 # we do not the conditional because this statement will return true or false anyway
 
-# def is_odd?(num)
-#   num % 2 == 1
-# end
+def is_odd?(num)
+  num % 2 == 1
+end
 
-# puts is_odd?(2)    # => false
-# puts is_odd?(5)    # => true
-# puts is_odd?(-17)  # => true
-# puts is_odd?(-8)   # => false
-# puts is_odd?(0)    # => false
-# puts is_odd?(7)    # => true
+puts is_odd?(2)    # => false
+puts is_odd?(5)    # => true
+puts is_odd?(-17)  # => true
+puts is_odd?(-8)   # => false
+puts is_odd?(0)    # => false
+puts is_odd?(7)    # => true
 
 #without knowing modulo
 
-# def is_odd_no_modulo?(number)
-#   float = number / 2.0
-#   float != float.to_i.to_f 
-# end
+def is_odd_no_modulo?(number)
+  float = number / 2.0
+  float != float.to_i.to_f 
+end
+
+puts is_odd_no_modulo?(2)    # => false
+puts is_odd_no_modulo?(5)    # => true
+puts is_odd_no_modulo?(-17)  # => true
+puts is_odd_no_modulo?(-8)   # => false
+puts is_odd_no_modulo?(0)    # => false
+puts is_odd_no_modulo?(1)    # => true
+puts is_odd_no_modulo?(-1)   # => true
+
+# clearer to read what is happening (for answer on forum)
 
 def is_odd_no_modulo?(number)
   float = number / 2.0
@@ -74,31 +84,25 @@ is_odd_no_modulo?(0)    # => false
 is_odd_no_modulo?(1)    # => true
 is_odd_no_modulo?(-1)   # => true
 
-# puts is_odd_no_modulo?(2)    # => false
-# puts is_odd_no_modulo?(5)    # => true
-# puts is_odd_no_modulo?(-17)  # => true
-# puts is_odd_no_modulo?(-8)   # => false
-# puts is_odd_no_modulo?(0)    # => false
-# puts is_odd_no_modulo?(1)    # => true
-# puts is_odd_no_modulo?(-1)   # => true
+
 
 # using Integer#remainder
 # START
 # given one valid integer, int
 # IF int.remainder(2) == 1 RETURN true
 
-# def is_odd_using_remainder(int)
-#   int.remainder(2).abs == 1
-# end
+def is_odd_using_remainder(int)
+  int.remainder(2).abs == 1
+end
 
-# puts is_odd_using_remainder(2)
-# puts is_odd_using_remainder(5)
-# puts is_odd_using_remainder(-17)
-# puts is_odd_using_remainder(-8)
-# puts is_odd_using_remainder(0)
-# puts is_odd_using_remainder(7)
-# puts is_odd_using_remainder(1)
-# puts is_odd_using_remainder(-1)
+puts is_odd_using_remainder(2)
+puts is_odd_using_remainder(5)
+puts is_odd_using_remainder(-17)
+puts is_odd_using_remainder(-8)
+puts is_odd_using_remainder(0)
+puts is_odd_using_remainder(7)
+puts is_odd_using_remainder(1)
+puts is_odd_using_remainder(-1)
 
 
 
