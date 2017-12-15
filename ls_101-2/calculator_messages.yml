@@ -1,0 +1,41 @@
+en:
+  welcome: "Welcome to Calculator! For English, enter 1. Para español, ingrese 2:"
+  choose_language: "For English, enter 1. Para español, ingrese 2:"
+  enter_name: "Please enter your name:"
+  valid_name: "Make sure to use a valid name. (Your name cannot begin with a space.)"
+  hi: "Hi %{yaml_name}"
+  number1_prompt: "What's the first number?"
+  invalid_number: "Hmm, that doesn't look like a valid number. Please try again."
+  number2_prompt: "What's the second number?"
+  operator_prompt: |
+    What operation would you like to perform?
+    1) add
+    2) subtract
+    3) multiply
+    4) divide
+  invalid_operator: "Oops. Please choose 1, 2, 3, or 4."
+  divide_by_zero: "You can't divide by zero."
+  doing_operation: "the two numbers..."
+  answer: "The result is %{yaml_result}."
+  continue: "Do you want to perform another calculation? (Y to calculate again, any other key or word to exit.)"
+  thanks: "Thanks for calculating with me. Bye!"
+es:
+  welcome: "Bienvenido a Calculadora!"
+  enter_name: "Introduzca su nombre:"
+  valid_name: "Asegúrate de usar un nombre válido. (Tu nombre no puede comenzar con un espacio)."
+  hi: "Hola %{yaml_name}"
+  number1_prompt: "¿Cuál es el primer número?"
+  invalid_number: "Hmm, eso no se ve como un número válido. Inténtalo de nuevo."
+  number2_prompt: "¿Cuál es el segundo número?"
+  operator_prompt: |
+    ¿Qué operación matemática te gustaría realizar?
+    1) agregar
+    2) sustraer
+    3) multiplicar
+    4) dividir
+  invalid_operator: "Por favor, elija 1, 2, 3 o 4."
+  divide_by_zero: "No puedes dividir por cero."
+  doing_operation: "los dos números..."
+  answer: "El resultado es %{yaml_result}."
+  continue: "¿Desea realizar otro cálculo? (Y para calcular nuevamente, cualquier otra tecla o palabra para salir)."
+  thanks: "Gracias por calcular conmigo ¡Adiós!"
