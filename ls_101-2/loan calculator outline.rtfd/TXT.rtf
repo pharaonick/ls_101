@@ -1,0 +1,127 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\margl1440\margr1440\vieww16600\viewh15120\viewkind0
+\deftab720
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+
+\f0\fs48 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Assignment: Mortgage / Car Loan Calculator \
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+
+\fs28 \cf2 INPUT:\
+loan amount in dollars: positive integer. round. validate (integer, not negative, not 0)\
+apr: positive float. validate (float, not negative, not 0). convert from percentage to decimal. convert to monthly interest rate.\
+duration in months: positive integer. validate (integer, not negative, not zero)\
+\
+OUTPUT:\
+string containing monthly payment for loan data entered.\
+option to calculate again (from beginning? just change one or more params?)\
+\
+TEST CASES (loan amount, apr, duration):\
+22550, 5.5. 60\
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+\cf2 \outl0\strokewidth0 500000, 5, 360\
+200000, 125.345, 12\cf2 \outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+\cf2 105.6, -4, 50.5\
+-2000, 0, 0\
+0, 39, -360\
+\'91duck\'92, nil, -0\
+v small amounts\
+\
+DATA STRUCS\
+numbers\
+\
+ALGO\
+Welcome to loan calculator.\
+\
+MAIN LOOP\
+\
+loan_amount = \'91\'92\
+LOOP\
+Enter loan amount. Will be rounded down.\
+Validate.\
+Set loan_amount.to_i\
+END\
+\
+monthly_interest = \'91\'92\
+LOOP\
+Enter APR.\
+Validate.\
+Set monthly_interest to APR/100/12.to_f (as method?)\
+END\
+\
+months_duration = \'91\'92\
+LOOP\
+Enter loan duration in months.\
+Validate. \
+Set months_duration.\
+END\
+\
+optional confirmation of data? (would need subloop)\
+\
+Performing calculation for loan_amount @ monthly_interest for _months_duration\
+\
+puts \cf2 \outl0\strokewidth0 m = p * (j / (1 - (1 + j)**(-n)))\
+\
+Go again? y/n\
+Validate\cf2 \outl0\strokewidth0 \strokec2 \
+END MAIN LOOP\
+\
+Goodbye.\
+\
+EXIT\
+\
+do language translate and stuff too\
+\
+\
+\
+\
+\
+Take everything you've learned so far and build a mortgage calculator (or car payment calculator -- it's the same thing).\
+You'll need three pieces of information:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl264\slmult1\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 the loan amount \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 the Annual Percentage Rate (APR) \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 the loan duration \
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+\cf2 From the above, you'll need to calculate the following two things:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl264\slmult1\partightenfactor0
+\ls2\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 monthly interest rate \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 loan duration in months \
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+\cf2 You can use the following formula:\
+m = p * (j / (1 - (1 + j)**(-n)))\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl264\slmult1\partightenfactor0
+\ls3\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 m = monthly payment\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 p = loan amount \
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 j = monthly interest rate \
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 n = loan duration in months \
+\pard\pardeftab720\sl264\slmult1\partightenfactor0
+\cf2 \
+Finally, don't forget to run your code through Rubocop.\
+Hints:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl264\slmult1\partightenfactor0
+\ls4\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Figure out what format your inputs need to be in. For example, should the interest rate be expressed as 5 or .05, if you mean 5% interest? \
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 If you're working with Annual Percentage Rate (APR), you'll need to convert that to a monthly interest rate. \
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Be careful about the loan duration -- are you working with months or years? Choose variable names carefully to assist in remembering. \
+}

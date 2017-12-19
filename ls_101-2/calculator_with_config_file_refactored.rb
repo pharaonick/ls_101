@@ -12,35 +12,31 @@ def prompt(message)
 end
 
 # '-0.00', '-0.000' etc will not get caught by this check
+# def valid_number?(num)
+#   if num == '0.0' || num == '-0' || num == '-0.0' || num =~ /^-?\d+\.$/
+#     false
+#   elsif num =~ /^-?\d+\.?\d*$/
+#     true
+#   else
+#     false
+#   end
+# end
+
 def valid_number?(num)
-  if num == '0.0' || num == '-0' || num == '-0.0' || num =~ /^-?\d+\.$/
-    false
-  elsif num =~ /^-?\d+\.?\d*$/
-    true
-  else
-    false
-  end
+  num =~ /^-?\d+\.?\d*$/ && num[/^-0+\.?0*$|^-?\.0+$|^-?\d+\.$/].nil?
 end
 
-# You can match all of your special cases except "0.0", and also match "-0.00" and "-00.00" with /^-0+\.?0*$/. 
-# if you wanted to also match "-.0" and ".0" you would need to do /^-0+\.?0*$|^-?\.0+$/. 
-# As you can see, regex is powerful but can be quite a project in itself!
-
-
 def operation_to_message(op)
-  # initialize operation_name variable so method returns the operation
-  # even if we add code after the case statement later
-  operation_name = case op
-                   when '1'
-                     'Adding'
-                   when '2'
-                     'Subtracting'
-                   when '3'
-                     'Multiplying'
-                   when '4'
-                     'Dividing'
-                   end
-  operation_name
+  case op
+  when '1'
+    'Adding'
+  when '2'
+    'Subtracting'
+  when '3'
+    'Multiplying'
+  when '4'
+    'Dividing'
+  end
 end
 
 def dividing_by_0?(op, num)
