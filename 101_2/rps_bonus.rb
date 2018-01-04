@@ -1,6 +1,6 @@
 VALID_CHOICES = { r: 'rock', p: 'paper', sc: 'scissors', sp: 'spock', l: 'lizard' }
 
-DEFEATS = {
+WINNER_LOSERS = {
   rock: %w(scissors lizard),
   paper: %w(rock spock),
   scissors: %w(lizard paper),
@@ -13,7 +13,7 @@ def prompt(message)
 end
 
 def win?(first, second)
-  DEFEATS[first.to_sym].include?(second)
+  WINNER_LOSERS[first.to_sym].include?(second)
 end
 
 def display_result(player, computer)
