@@ -42,8 +42,8 @@ def increment_score(winning_player, current_score)
   current_score[winning_player] += 1
 end
 
-def overall_winner?(results)
-  results.value?(5)
+def overall_winner?(current_score)
+  current_score.value?(5)
 end
 
 round = 1
@@ -94,7 +94,7 @@ loop do
   end
 
   round += 1
-  # seems a bit hacky...
+
   prompt("Hit return for round #{round}.")
   gets
 
