@@ -1,2 +1,3 @@
 # ignore files where I'm playing around or testing something...
 ~/documents/programs/ls_101/101_2/rps_choice_loop_test.rb
+*/*test.rb
