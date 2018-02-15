@@ -83,21 +83,19 @@ def person_places_piece!(brd)
   brd[square] = PERSON_MARKER
 end
 
-# rubocop:disable Metrics/LineLength
 def computer_places_piece!(brd, attack = [], defend = [])
   assess_lines!(brd, attack, defend)
 
   square = if !attack.empty?
-             attack.flatten.uniq.select { |key| brd[key] == INITIAL_MARKER }.sample
+             computer_attacks(brd, attack)
            elsif !defend.empty?
-             defend.flatten.uniq.select { |key| brd[key] == INITIAL_MARKER }.sample
+             computer_defends(brd, defend)
            else
              brd[5] == INITIAL_MARKER ? 5 : empty_squares(brd).sample
            end
 
   brd[square] = COMPUTER_MARKER
 end
-# rubocop:enable Metrics/LineLength
 
 def assess_lines!(brd, attack, defend)
   WINNING_LINES.each do |line|
@@ -111,12 +109,12 @@ def assess_lines!(brd, attack, defend)
   end
 end
 
-def computer_attacks()
-
+def computer_attacks(brd, attack)
+  attack.flatten.uniq.select { |key| brd[key] == INITIAL_MARKER }.sample
 end
 
-def computer_defends()
-
+def computer_defends(brd, defend)
+  defend.flatten.uniq.select { |key| brd[key] == INITIAL_MARKER }.sample
 end
 
 def board_full?(brd)
@@ -140,6 +138,12 @@ end
 
 def increment_score(current_score, winner)
   current_score[winner] += 1
+end
+
+def play_again?
+  prompt "Play again? ('y' to play again; any other key to exit)"
+  answer = gets.chomp
+  answer.downcase == 'y' ? true : false
 end
 
 ### LET THE GAMES BEGIN ###
@@ -193,9 +197,7 @@ loop do
     end
   end
 
-  prompt "Play again? ('y' to play again; any other key to exit)"
-  answer = gets.chomp
-  break unless answer.downcase == 'y'
+  break unless play_again?
 end
 
 prompt "Thanks for playing Noughts and Crosses! Goodbye."
