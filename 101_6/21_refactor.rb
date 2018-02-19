@@ -1,23 +1,3 @@
-# Blackjack but without betting, splitting, etc
-# Ace considered 11 unless that would bust you, then 1
-# Dealer stands on soft 17
-
-# 1. Initialize deck
-# 2. Deal cards to player and dealer
-# 3. Player turn: hit or stay
-#   - repeat until bust or "stay"
-# 4. If player bust, dealer wins.
-# 5. Dealer turn: hit or stay
-#   - repeat until total >= 17
-# 6. If dealer bust, player wins.
-# 7. Compare cards and declare winner.
-
-# SEE ls_21.rb for LS solution...********
-# 
-
-require 'pry'
-require 'pry-byebug'
-
 CARD_VALUES = {
   '2'  =>  2,
   '3'  =>  3,
@@ -63,9 +43,7 @@ def card_name(card)
   card.reverse.join
 end
 
-# does it help to have this as method or is it unnecessary & confusing?
-# probably unnecessary - not needed for DRY
-# no advantage to capturing logic...
+# rubocop: disable Metrics/AbcSize, Metrics/MethodLength
 def player_turn(player, deck)
   loop do
     action = ''
@@ -80,21 +58,31 @@ def player_turn(player, deck)
     break if action == 's'
 
     player << deal_card(deck)
-    prompt "You are dealt #{card_name(player.last)}." # add running score?
-    break if busted?(player)
+    total = cards_total(player)
+
+    dealt_card = "You are dealt #{card_name(player.last)}."
+    curr_total = "Your current total is #{total}."
+    prompt dealt_card + ' ' + curr_total
+
+    break if busted?(total)
   end
 end
+# rubocop: enable Metrics/AbcSize, Metrics/MethodLength
 
 def dealer_turn(dealer, deck)
+  prompt "--------------------"
   prompt "Dealer has #{card_name(dealer[0])} & #{card_name(dealer[1])}."
   loop do
     break if cards_total(dealer) >= 17
     dealer << deal_card(deck)
-    prompt "Dealer is dealt #{card_name(dealer.last)}"
+    total = cards_total(dealer)
+
+    dealt_card = "Dealer is dealt #{card_name(dealer.last)}."
+    curr_total = "Dealer's current total is #{total}."
+    prompt dealt_card + ' ' + curr_total
   end
 end
 
-# see 21_loopy.rb for LS solution which is (ldo) MUCH more elegant!!
 def cards_total(cards)
   total = 0
 
@@ -124,12 +112,16 @@ def aced_total(cards, original_total)
   adjusted_total
 end
 
-def busted?(cards)
-  cards_total(cards) > 21
+def busted?(current_total)
+  current_total > 21
 end
 
 def determine_winner(player, dealer)
-  cards_total(player) <=> cards_total(dealer)
+  player <=> dealer
+end
+
+def increment_score(winner, current_score)
+  current_score[winner] += 1 unless winner.include?("It's")
 end
 
 def display_winner(player, dealer)
@@ -144,44 +136,71 @@ end
 
 system('clear') || system('cls')
 prompt "Hi! Welcome to TWENTY-ONE. Closest to 21 without busting wins!"
-prompt "(An ace = 11 by default, but 1 if that would bust you.)"
+prompt "(An ace = 11 by default, but 1 if that would bust you."
+prompt "Dealer stands on soft 17.)"
+prompt "--------------------"
+prompt "First to win five hands is the champion!"
+
+score = { 'Player' => 0, 'Dealer' => 0 }
 
 loop do
   current_deck = initialize_deck
   player_cards = []
   dealer_cards = []
 
+  player_score = "The current score is Player: #{score['Player']},"
+  dealer_score = "Dealer: #{score['Dealer']}."
+  prompt player_score + ' ' + dealer_score
+
+  prompt "--------------------"
+
   start_game(player_cards, dealer_cards, current_deck)
 
-  p1 = "You are dealt #{card_name(player_cards[0])}"
-  p2 = "& #{card_name(player_cards[1])}."
-  p3 = "Dealer is showing #{card_name(dealer_cards[0])}."
-  prompt p1 + ' ' + p2 + ' ' + p3
+  player_total = cards_total(player_cards)
+
+  card1 = "You are dealt #{card_name(player_cards[0])}"
+  card2 = "& #{card_name(player_cards[1])}."
+  curr_total = "Your current total is #{player_total}."
+  prompt card1 + ' ' + card2 + ' ' + curr_total
+
+  prompt "Dealer is showing #{card_name(dealer_cards[0])}."
 
   player_turn(player_cards, current_deck)
+  player_total = cards_total(player_cards)
 
-  if busted?(player_cards)
-    prompt "Sorry, you bust with #{cards_total(player_cards)}. Dealer wins!"
+  if busted?(player_total)
+    prompt "Sorry, you bust with #{player_total}. Dealer wins!"
+    increment_score('Dealer', score)
   else
-    prompt "You stand. Your total is #{cards_total(player_cards)}."
+    prompt "You stand. Your total is #{player_total}."
 
     dealer_turn(dealer_cards, current_deck)
+    dealer_total = cards_total(dealer_cards)
 
-    if busted?(dealer_cards)
-      prompt "Dealer busts with #{cards_total(dealer_cards)}. You win!"
+    if busted?(dealer_total)
+      prompt "Dealer busts with #{dealer_total}. You win!"
+      increment_score('Player', score)
     else
-      prompt "Player has #{cards_total(player_cards)}."
-      prompt "Dealer has #{cards_total(dealer_cards)}."
-      prompt display_winner(player_cards, dealer_cards)
+      prompt "--------------------"
+
+      prompt "Player has #{player_total}. Dealer has #{dealer_total}."
+      winner = display_winner(player_total, dealer_total)
+      prompt winner
+      increment_score(winner[0..5], score)
     end
   end
 
-  # interesting how LS sets this up as a method that returns true/false
-  prompt "'y' to play again, anything else to exit."
-  answer = gets.chomp.downcase
-  break unless answer == 'y'
+  prompt "--------------------"
+  prompt "Player: #{score['Player']}, Dealer: #{score['Dealer']}."
+
+  break if score.value?(5)
+
+  prompt "Hit enter to continue."
+  gets
 
   system('clear') || system('cls')
 end
+
+prompt "#{score.key(5)} is the grand champion!"
 
 prompt "Thanks for playing TWENTY-ONE... Goodbye!"
