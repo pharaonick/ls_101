@@ -1,3 +1,6 @@
+TARGET = 21
+STAND_ON = 17
+
 CARD_VALUES = {
   '2'  =>  2,
   '3'  =>  3,
@@ -73,7 +76,7 @@ def dealer_turn(dealer, deck)
   prompt "--------------------"
   prompt "Dealer has #{card_name(dealer[0])} & #{card_name(dealer[1])}."
   loop do
-    break if cards_total(dealer) >= 17
+    break if cards_total(dealer) >= STAND_ON
     dealer << deal_card(deck)
     total = cards_total(dealer)
 
@@ -89,7 +92,7 @@ def cards_total(cards)
   cards.each do |card|
     total += CARD_VALUES[card[1]]
   end
-  total > 21 && ace?(cards) ? aced_total(cards, total) : total
+  total > TARGET && ace?(cards) ? aced_total(cards, total) : total
 end
 
 def ace?(cards)
@@ -106,14 +109,14 @@ def aced_total(cards, original_total)
   loop do
     adjusted_total -= 10
     count += 1
-    break if adjusted_total <= 21 || count > aces
+    break if adjusted_total <= TARGET || count > aces
   end
 
   adjusted_total
 end
 
 def busted?(current_total)
-  current_total > 21
+  current_total > TARGET
 end
 
 def determine_winner(player, dealer)
@@ -135,9 +138,9 @@ end
 ########## LET THE GAMES BEGIN ##########
 
 system('clear') || system('cls')
-prompt "Hi! Welcome to TWENTY-ONE. Closest to 21 without busting wins!"
+prompt "Welcome to TWENTY-ONE-PLUS. Closest to #{TARGET} without busting wins!"
 prompt "(An ace = 11 by default, but 1 if that would bust you."
-prompt "Dealer stands on soft 17.)"
+prompt "Dealer stands on soft #{STAND_ON}.)"
 prompt "--------------------"
 prompt "First to win five hands is the champion!"
 
@@ -203,4 +206,4 @@ end
 
 prompt "#{score.key(5)} is the grand champion!"
 
-prompt "Thanks for playing TWENTY-ONE... Goodbye!"
+prompt "Thanks for playing TWENTY-ONE-PLUS... Goodbye!"
