@@ -1,3 +1,6 @@
+
+# DO FURTHER EXPLORATION!!!!
+
 # input: odd integer - n
 # output: 4 pointed diamond in n x n grid
 #   - note that n is not how many stars there are, but the grid size
