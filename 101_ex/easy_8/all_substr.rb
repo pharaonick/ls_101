@@ -58,7 +58,7 @@ def substrings(str)
     end
     index += 1
   end
-  substrings.delete_if { |string| string.empty? }
+  substrings.delete_if { |string| string.empty? } # because are calling str[1..0] for example
 end
 
 substrings('abcde') == [

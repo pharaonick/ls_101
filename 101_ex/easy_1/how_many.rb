@@ -1,3 +1,10 @@
+# loop through array, for each element create it as a hash key if it doesn't already exist
+# and then increment its value by 1
+
+def counter(arr)
+  arr.each_with_object(Hash.new(0)) { |el, hash| hash[el] += 1 }
+end
+
 # Write a method that counts the number of occurrences of each element in a given array.
 
 # vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck', 'motorcycle', 'motorcycle', 'car', 'truck']

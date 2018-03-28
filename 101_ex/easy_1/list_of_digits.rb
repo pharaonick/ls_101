@@ -1,6 +1,13 @@
 # Write a method that takes one argument, a positive integer, 
 # and returns a list of the digits in the number.
 
+def digit_list(num)
+  num.to_s.chars.map(&:to_i)
+end
+
+
+
+
 # input: positive integer
 # output: array of digits - so digit needs to be turned into string
 # rules: assume positive integer, so ignore edge cases (negative, float, string, nil)

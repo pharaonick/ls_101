@@ -81,30 +81,95 @@
   
 
 
-def substrings(str)
-  substrs = []
-  characters = str.chars
+# def substrings(str)
+#   substrs = []
+#   characters = str.chars
   
-  characters.each_with_index do |char1, i1|
-    characters.each_with_index do |char2, i2|
-      possible_sub = str[i1..i2]
-      substrs << possible_sub.downcase if possible_sub.length > 1
+#   characters.each_with_index do |char1, i1|
+#     characters.each_with_index do |char2, i2|
+#       possible_sub = str[i1..i2]
+#       substrs << possible_sub.downcase if possible_sub.length > 1
+#     end
+#   end
+  
+#   substrs
+# end
+
+# def substring_test(str1, str2)
+#   substrings(str1).each do |sub|
+#     return true if substrings(str2).include?(sub)
+#   end
+#   false
+# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# receiving two strings, return true if there is a substring present in both
+# - case is irrelevant
+# - we only care about substrings of more than one letter
+
+=begin
+
+for each input string, construct an array of all its substrings of 2+ letters
+compare to see if any substring from one array is in the other
+
+all subs >= 2 letters of 'something'
+so, som, some, somet, someth, somethi, somethin, something == idx 0..1, 0..2 .. 0..-1
+om, ome, omet, ometh, omethi, omethin, omething == idx 1..2, 1..3, 1..-1
+...
+
+for each index of string, iterate through rest of string (index must be greater)
+  - adding index1..index2 to a results array
+
+=end
+
+
+
+def subs(str)
+  substrings = []
+  str.each_char.with_index do |char1, idx1|
+    str.each_char.with_index do |char2, idx2|
+      substrings << str[idx1..idx2] if idx2 > idx1
     end
   end
-  
-  substrs
+  substrings = substrings.map {|sub| sub.downcase }
 end
 
 def substring_test(str1, str2)
-  substrings(str1).each do |sub|
-    return true if substrings(str2).include?(sub)
+  str1_subs = subs(str1)
+  str2_subs = subs(str2)
+
+  str1_subs.each do |substring|
+    return true if str2_subs.include?(substring)
   end
   false
 end
 
+
+
+
 p substring_test('Something', 'Fun') #== false
 p substring_test('Something', 'Home') #== true
-p substring_test('Something', 'Fun') #== false
 p substring_test('Something', '') #== false
 p substring_test('', 'Something') #== false
 p substring_test('BANANA', 'banana') #== true
@@ -112,3 +177,15 @@ p substring_test('test', 'lllt') #== false
 p substring_test('', '') #== false
 p substring_test('1234567', '541265') #== true
 p substring_test('supercalifragilisticexpialidocious', 'SoundOfItIsAtrociou')  #== true
+
+
+
+
+
+
+
+
+
+
+
+
